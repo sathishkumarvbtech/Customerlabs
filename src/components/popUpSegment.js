@@ -6,7 +6,7 @@ const initialState = {
     status: 'idle', //idle | pending | succeeded | failed
     error: null
 }
-const POSTS_URL = 'https://webhook.site/token/03c65937-9d0b-4401-9f02-e501bbdd7b1';
+const POSTS_URL = 'https://webhook.site/03c65937-9d0b-4401-9f02-e501bbdd7b1f';
 
 export const addNewSegment = createAsyncThunk('segments/addNewSegment', async (initialPost) => {
     const response = await axios.post(POSTS_URL, initialPost)

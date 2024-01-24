@@ -21,7 +21,6 @@ function App() {
         <button type='button' onClick={segmentOpen}>Save Segment</button>
       </div>
       <SegmentFrom isOpen={open} onClose={segmentClose} />
-
     </div>
   );
 }

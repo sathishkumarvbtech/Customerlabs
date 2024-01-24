@@ -4,7 +4,6 @@ import { addNewSegment } from "./popUpSegment";
 import { selectAllSegments } from "./popUpSegment";
 import '../style.css';
 
-
 const SegmentFrom = ({ isOpen, onClose }) => {
 
     const [openSchema, setOpenSchema] = useState(false);
@@ -19,6 +18,18 @@ const SegmentFrom = ({ isOpen, onClose }) => {
     const canSave = [firstname, lastname, gender, age, city, state].every(Boolean);
     const segments = useSelector(selectAllSegments);
     const dispatch = useDispatch();
+
+    const [aniOpen, setAniOpen] = useState(false);
+
+    const animationEndHandler = ({ animationName }) => {
+        if (animationName === 'open-menu') {
+            setAniOpen(true);
+        }
+
+        if (animationName === 'close-menu') {
+            setAniOpen(false);
+        }
+    };
 
     const handleSegmentData = () => {
         if (canSave) {
@@ -45,12 +56,17 @@ const SegmentFrom = ({ isOpen, onClose }) => {
         setOpenSchema(!openSchema)
     }
 
+
     const AddSchema = ({ openSchema }) => {
+
+
         if (!openSchema) return null
         return (
-            <div>
+            <div onAnimationEnd={(event) => animationEndHandler(event)}
+                className={aniOpen ? 'mainStyles open' : 'mainStyles close'}>
                 <form>
                     <div className="Form-div">
+
                         <label>First Name</label><br />
                         <select value={firstname} onChange={(e) => setFirstname(e.target.value)}>
                             <option>Select first name</option>
